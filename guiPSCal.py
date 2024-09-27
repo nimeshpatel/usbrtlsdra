@@ -133,14 +133,14 @@ entry_frequency = ttk.Entry(frame)
 entry_frequency.insert(0, "1420.406")  # Default value
 entry_frequency.grid(column=1, row=1, sticky=tk.W)
 
-ttk.Label(frame, text="Gain:").grid(column=0, row=2, sticky=tk.W)
+ttk.Label(frame, text="Gain (<=35):").grid(column=0, row=2, sticky=tk.W)
 entry_gain = ttk.Entry(frame)
 entry_gain.insert(0, "30")  # Default value
 entry_gain.grid(column=1, row=2, sticky=tk.W)
 
 # Checkbox for calibration option
 calibrate_var = tk.BooleanVar()
-calibrate_check = ttk.Checkbutton(frame, text="Perform Calibration", variable=calibrate_var)
+calibrate_check = ttk.Checkbutton(frame, text="Perform new calibration", variable=calibrate_var)
 calibrate_check.grid(column=0, row=3, columnspan=2, sticky=tk.W)
 
 # Start button
