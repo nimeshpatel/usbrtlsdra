@@ -116,43 +116,48 @@ def quit_program():
 window = tk.Tk()
 window.title("Spectrum Acquisition and Calibration")
 
-# Set default size larger to accommodate the toolbar visibility
-window.geometry("1000x800")
+# Adjust window size to fit Raspberry Pi touchscreen display
+window.geometry("800x480")
 
-frame = ttk.Frame(window, padding="10")
-frame.pack(fill=tk.BOTH, expand=True)
+# Frame for input cells
+input_frame = ttk.Frame(window, padding="5")
+input_frame.pack(fill=tk.X)
 
-# Input fields
-ttk.Label(frame, text="Number of samples (N):").grid(column=0, row=0, sticky=tk.W)
-entry_N = ttk.Entry(frame)
+# Input fields in one row
+ttk.Label(input_frame, text="Samples (N):").grid(column=0, row=0, sticky=tk.W)
+entry_N = ttk.Entry(input_frame, width=5)
 entry_N.insert(0, "100")  # Default value
 entry_N.grid(column=1, row=0, sticky=tk.W)
 
-ttk.Label(frame, text="Frequency (MHz):").grid(column=0, row=1, sticky=tk.W)
-entry_frequency = ttk.Entry(frame)
+ttk.Label(input_frame, text="Frequency (MHz):").grid(column=2, row=0, sticky=tk.W)
+entry_frequency = ttk.Entry(input_frame, width=10)
 entry_frequency.insert(0, "1420.406")  # Default value
-entry_frequency.grid(column=1, row=1, sticky=tk.W)
+entry_frequency.grid(column=3, row=0, sticky=tk.W)
 
-ttk.Label(frame, text="Gain (<=35):").grid(column=0, row=2, sticky=tk.W)
-entry_gain = ttk.Entry(frame)
+ttk.Label(input_frame, text="Gain:").grid(column=4, row=0, sticky=tk.W)
+entry_gain = ttk.Entry(input_frame, width=5)
 entry_gain.insert(0, "30")  # Default value
-entry_gain.grid(column=1, row=2, sticky=tk.W)
+entry_gain.grid(column=5, row=0, sticky=tk.W)
+
+# Frame for buttons
+button_frame = ttk.Frame(window, padding="5")
+button_frame.pack(fill=tk.X)
 
 # Checkbox for calibration option
 calibrate_var = tk.BooleanVar()
-calibrate_check = ttk.Checkbutton(frame, text="Perform new calibration", variable=calibrate_var)
-calibrate_check.grid(column=0, row=3, columnspan=2, sticky=tk.W)
+calibrate_check = ttk.Checkbutton(button_frame, text="Perform Calibration", variable=calibrate_var)
+calibrate_check.grid(column=0, row=0, padx=5, sticky=tk.W)
 
 # Start button
-start_button = ttk.Button(frame, text="Start Acquisition", command=start_acquisition)
-start_button.grid(column=0, row=4, columnspan=2)
+start_button = ttk.Button(button_frame, text="Start Acquisition", command=start_acquisition)
+start_button.grid(column=1, row=0, padx=5, sticky=tk.W)
 
 # Quit button
-quit_button = ttk.Button(frame, text="Quit", command=quit_program)
-quit_button.grid(column=0, row=5, columnspan=2)
+quit_button = ttk.Button(button_frame, text="Quit", command=quit_program)
+quit_button.grid(column=2, row=0, padx=5, sticky=tk.W)
 
 # Frame for plotting
-plot_frame = ttk.Frame(window, padding="10")
+plot_frame = ttk.Frame(window, padding="5")
 plot_frame.pack(fill=tk.BOTH, expand=True)
 
 # Start the GUI loop
